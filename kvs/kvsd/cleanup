@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -f "statehash-*" ]; then
+	rm statehash-*
+fi
+
+if [ -f "log/*" ]; then
+	rm log/*
+fi
+
+if [ -f "*.elog" ]; then
+	rm *.elog
+fi
+
+if [ -d "profile" ]; then
+	rm -r profile
+fi

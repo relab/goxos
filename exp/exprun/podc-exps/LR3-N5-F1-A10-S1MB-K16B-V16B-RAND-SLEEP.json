@@ -1,0 +1,80 @@
+{
+	"Name": "LR3-N5-F1-A10-S1MB-K16B-V16B-RAND-SLEEP",
+	"Duration": 25,
+	"Runs": 20,
+
+	"RemoteUser": "telea",
+	"RemoteScratchDir": "/local/scratch",
+
+	"GoxosCommit": "HEAD",
+	"GoxoscCommit": "HEAD",
+	"GoxosappsCommit": "HEAD",
+
+	"Replicas": [
+		"pitter33",
+		"pitter34",
+		"pitter35",
+		"pitter36",
+		"pitter37"
+	],
+
+	"Standbys": [
+		"pitter21"
+	],
+
+	"Clients": [
+		"pitter22",
+		"pitter25",
+		"pitter26",
+		"pitter27",
+		"pitter28"
+	],
+
+	"PaxosPort": 8080,
+	"ClientPort": 8081,
+
+	"Failures": [
+		{
+			"Replica": "pitter34",
+			"Time": 2
+		}
+	],
+
+	"LiveRepRandPreConnectSleep": 50,
+	"LiveRepStrategy": 3,
+
+	"PaxosType": "MultiPaxos",
+	"Alpha": 10,
+	"FailureHandlingType": "LiveReplacement",
+
+	"Liveness": {
+		"HbEmitterInterval": 500,
+		"FdTimeoutInterval": 1000,
+		"FdDeltaIncrease": 250
+	},
+
+	"ReplicaInitialState": "state-1MB-16B+16B.gob",
+	"StatehashName": "statehash",
+
+	"GlogVLevel": 2,
+	"GlogVModule": "",
+	"GlogName": "kvs.INFO",
+
+	"ElogNameReplica": "kvs.elog",
+	"ElogNameClient": "kvsc.elog",
+	"ElogTSInterval": 25,
+
+	"ReplicaGCOff": true,
+	"ClientGCOff": true,
+
+	"ClientsPerMachine": 5,
+	"ClientsNumberOfRuns": 1,
+	"ClientsNumberOfCommands": 5000,
+	"ClientKeySet": "keys-1MB-16B+16B.gob",
+	"ClientsKeySize": 16,
+	"ClientsValueSize": 16,
+
+	"LocalCollectDir": "collect",
+	"LocalVersOut": "vers.txt",
+	"LocalTimeOut": "time.txt"
+}

@@ -1,0 +1,53 @@
+Design issue:
+
+How to avoid dependencies between modules?
+
+-> We are passing too many parameters to each constructor.
+-> We have too big structs
+-> There is significant redundancy between structs (no embedding)
+
+
+- Example NewClientHandlerTCP: references the GroupManager, the replica ID, the liveness detector, channels for requests, the stopCheckIn, etc.
+
+How can we avoid this? Here are some alternatives:
+
+1. Keep a central hub of references, e.g. in the GroupManager, and only pass around the group manager, leaving it to each module to lookup the references/information they need. 
+- Disadvantage: Everything depends on the GroupManager. Is this really bad? Maybe, because we must initialize the group manger with lots of info to run tests of simple modules.
+
+
+2. Use a message bus (a channel of interface{} type) on which the relevant reference type can be requested. Still depends on initializing modules, but only those that are needed for a particular other module. Requests for dependencies can block until the module becomes available during startup. Prevents circular dependencies. Can be checked/detected with the race detector.
+
+
+3. What is the idiomatic Go approach to handle dependencies?
+
+
+
+We need to avoid using interfaces for simple getters and setters.
+
+I also heard in the dotGo final panel that one should not use interfaces as the argument to a constructor, instead one should use the concrete type. Listen to this again. Check out presentations related to interfaces again, e.g. rsc's from the golang.org front page.
+
+Methods should take an interface, e.g. Reader or Writer and can call methods on it.
+
+Enforce naming convention for interfaces with the ER ending as in Reader. 
+
+
+
+Protocol/Module Life Cycle Management: We should not have Start() Stop() in all interfaces. Instead of manual starting and stopping, we should just keep an ordered list of stuff to start and stop that implement a StartStopper interface. Stop could take place in reverse of start. An alternative could possibly require that modules start/stop/block when they receive a signal on a channel?
+
+Can we use the init() method to Register modules in some registry like our demuxer.Register() and gob.Register() ?
+
+
+Naming convention for Module constructor: We only need to say lr.New() and reconfig.New() etc.
+
+
+GroupManager interface:
+TODO this interface is too big. Do we need a GroupManager interface? If so,
+what is the generic function of the group manager that could be implemented
+differently for different group managers?
+
+The RequestHold() and SubscribeToHold() should be removed: Instead Start()
+should return a channel on which requests to hold and corresponding
+releases should be sent. NO: this does not work, since Start() is only called once.
+
+
+

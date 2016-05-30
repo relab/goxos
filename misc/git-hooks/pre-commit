@@ -1,0 +1,52 @@
+#!/bin/sh
+
+status=0
+
+# go test 
+go test github.com/relab/goxos/...
+
+if [ $? -eq 1 ] ; then
+	echo
+	echo "ERROR: all tests did not pass"
+	status=1
+fi
+
+# go fmt
+dirs=$(go list -f {{.Dir}} github.com/relab/goxos/...)
+out=""
+tmp=""
+for d in $dirs; do
+	tmp=$(gofmt -s -l $d/*.go)
+	if [ "${tmp}" != "" ]
+	then
+		out="${out}${tmp}
+		"
+	fi
+done
+if [ "${out}" != "" ]
+then
+	echo
+	echo "ERROR: there are files that need to be formatted with gofmt"
+	echo "Files:"
+    	for file in $out
+    	do
+		echo "- ${file}"
+    	done
+	status=1
+fi
+
+# go vet
+`go vet github.com/relab/goxos/... > .vet 2>&1`
+out=`cat .vet`
+if [ "${out}" != "" ]
+then
+    	echo
+	echo "ERROR: go vet failures:"
+	cat <<END
+${out}
+END
+    	status=1
+fi
+
+rm .vet || true
+exit $status

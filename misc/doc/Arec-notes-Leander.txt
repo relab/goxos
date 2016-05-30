@@ -1,0 +1,51 @@
+handleforwarded: this might be wrong. We can only use forwarded ep's if we also received a ep from the sender.
+grpmgr :48 why do this as a goroutine. Probably to do it nonblocking. Would it not be better to simply have a buffered channel?
+
+QUESTION1: can it happen, that a epochpromise arrives, before the new node has done failureHandlingStart() 
+SOLUTION:(TODO) move the initdataresponse and maybe remove the
+initdataresponseack.
+
+question2: Is it possible to start FH and LD before initializing/starting Paxos?
+Not Needed now.
+
+TASK3: Check, if we can handle reconf/newconf messages concurrently with doing
+createAndSendReconfCmd. Check unique access.
+
+PROBLEM4: When connecting to a new node, GxConnect, the demuxer does a check
+(validateId()), which returns false, if the Paxos id is out of bound. This
+could be a problem, when using arec to change to a larger configuration.
+
+TASK5: Is the lock on reconfInProgress really needed, and can we instead use
+valid or statefull?
+
+problem6:Update nodeId:the current implementation does not support this. It
+might be possible to implement this on top of the grpmgr hold. But not every
+agent, using the id has this hold, e.g. the proposer not.
+SOLUTION: Global Ids.
+
+TASK8: Decouple round from Acceptor Slots. Adjust also getAcceptorState,
+acceptor.SetState and the extractAcceptorState(lr/arec) methods.
+
+QUESTION9: After activation, should a CPromise be answered by an activation
+message?
+
+IDEA11: RECONNECT: Solution: We want to have GxConnections to those servers 
+that we think will eventually run Paxos. Communication with other should 
+use other means. To avoid accepting paxos messages from other epochs, 
+we can simply temper with the ProposerRound.Compare method, to always return -1, 
+if the epoch is different.
+
+QUESTION12: Upon changing the id, should we still implement a method, 
+that tells others to update aswell, s.t. they can update the id stored in their connection.
+
+QUESTION13: Can I change the exported function GxConnect to first look up, 
+if the node exists in the map, and only connect if it does not?
+
+TODO14: Include global id's in arec.
+
+QUESTION15: How should we pass the AduSlot included in the activation message
+to paxos modul?
+
+TASK16: Insert Arec in config/variants.go
+
+TASH17: Write unittest for init_areconf.go

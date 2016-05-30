@@ -1,0 +1,41 @@
+# General
+*.test
+*.prof
+
+# Logging
+*.log
+*.elog
+
+# Vim
+*.go~
+*.sw*
+
+# Emacs
+.#*
+\#*
+
+# Sublime
+goxos.sublime*
+
+# Windows
+*.exe
+
+# Mac
+.DS_Store
+
+# Fabric
+fabfile.pyc
+
+# kvsd
+statehash-*
+statehash
+
+# Binaries
+kvs/kvsd/kvsd
+kvs/kvsc/kvsc
+exp/expanalyze/expanalyze
+exp/expconfgen/expconfgen
+exp/exppinghosts/exppinghosts
+exp/util/stategen/stategen
+exp/expanalyzeall/expanalyzeall
+bftpubsub/bftpubsub

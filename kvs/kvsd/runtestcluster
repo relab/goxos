@@ -1,0 +1,21 @@
+#!/bin/sh
+
+go build
+BUILD=$?
+
+if [ $BUILD -ne 0 ]; then
+	echo "go build failed"
+	exit
+fi
+
+N=2
+OUT=k
+
+for i in `seq 0 $N`; do
+  echo "Starting $i..."
+  ./kvsd -v=3 -log_dir=./log/ -id $i -all-cores -config-file conf/config.ini &
+done
+
+echo "Running. Press enter to stop."
+
+read && killall kvsd

@@ -1,0 +1,27 @@
+{
+	"Nodes": {
+		"0": {
+			"Ip": "127.0.0.1",
+			"PaxosPort": "8080",
+			"ClientPort": "8081"
+
+		},
+		"1": {
+			"Ip": "127.0.0.1",
+			"PaxosPort": "8082",
+			"ClientPort": "8083"
+
+		},
+		"2": {
+			"Ip": "127.0.0.1",
+			"PaxosPort": "8084",
+			"ClientPort": "8085"
+		}
+	},
+	"PaxosType": "BatchPaxos",
+	"BatchPaxosConfiguration": {
+		"MaxSize": 100,
+		"Timeout": 500
+	},
+	"FailureHandlingType": "None"
+}

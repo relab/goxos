@@ -1,0 +1,98 @@
+Goxos Programming Rules and Style Guidelines
+--------------------------------------------
+
+(TODO: Turn this document into Markdown so that it can be view online in github.)
+
+(TODO: Organize into design aspects versus more programming oriented.)
+
+- Rob Pike's blog about configuration options:
+  http://commandcenter.blogspot.no/2014_01_01_archive.html
+  See also Dave Cheney's blog/talk at dotGo'2014:
+  http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
+
+- Read and adopt the Google internal code review guidelines:
+  https://code.google.com/p/go-wiki/wiki/CodeReviewComments
+
+  (Read also the links pointing to the Effective Go page.)
+
+- Twelve Go Best practices:
+  http://talks.golang.org/2013/bestpractices.slide#1
+
+- Naming of interfaces: Should end with 'er' as in Demuxer and Reader.
+
+- Simple Made Easy talk by Rich Hickey (author of Clojure) 
+    http://www.infoq.com/presentations/Simple-Made-Easy
+
+- Josh Bloch's Bumper-Sticker API Design:
+    http://www.infoq.com/articles/API-Design-Joshua-Bloch
+  Link to presentation: 
+    http://www.infoq.com/presentations/effective-api-design
+
+
+- Read and adopt the Power of Ten rules, summarized below:
+  + Rule 1: Avoid goto and recursion.
+
+  + Rule 2: Loop is either pre-determined or infinite.
+
+  - Rule 3: Dynamic memory allocation (not appropriate for Go).
+
+  + Rule 4: No function should be longer than about 60 lines of code
+    (and lines should be no longer than 78 columns)
+
+  + Rule 5: Minimally two assertions per function.
+
+  + Rule 6: Declare all data objects at the smallest possible level of scope.
+
+  + Rule 7: Each calling function must check the return value of functions,
+    and each called function must check the validity of all parameters
+    provided by the caller.
+
+  - Rule 8: The use of the pre-processor (not applicable to Go).
+
+  - Rule 9: The use of pointers must be restricted (not applicable to Go, I think).
+
+  - Rule 10: All code must compile with all warnings enabled at the most
+    pedantic setting. (Go already enforces this, at least to some extent).
+
+
+- Design by contract discipline.
+
+
+- Design: Separate between policy and mechanism
+
+
+- Follow the SOLID principles:
+  - S:
+  - O:
+  - L:
+  - I:
+  - D:
+
+
+- Five Rules for writing safe code that share objects:
+  - See pages 237-239 in Op.sys. book.
+
+
+- Function calls with parameter lists that would extend beyond 78 columns
+  should instead place one argument per line.
+
+
+- Install and run golint and try to follow the guidelines provided by lint:
+
+  go get github.com/golang/lint/golint
+  go install github.com/golang/lint/golint
+  golint .
+
+
+- Adopt git commit messages according to:
+  http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+
+- Install the goxos pre-commit hook:
+  cp misc/git-hooks/pre-commit .git/hooks/
+
+
+- Try to keep intermodule dependencies to a minimum
+  A tool that will be helpful to identify dependencies is:
+  https://github.com/kisielk/godepgraph
+

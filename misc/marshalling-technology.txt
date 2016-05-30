@@ -1,0 +1,4 @@
+https://code.google.com/p/gobin-codegen/
+(consider to rewamp this codebase when the go generate tool is ready)
+
+Need to compare it with protobuf version and gogoprotobuf.

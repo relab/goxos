@@ -1,0 +1,85 @@
+{
+	"ImportPath": "github.com/relab/goxos",
+	"GoVersion": "go1.3.3",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "bitbucket.org/zombiezen/gopdf/pdf",
+			"Comment": "go.weekly.2012-02-22-6",
+			"Rev": "e2b3665dfc60e6bf1bb7a05596d83d13a2efadfa"
+		},
+		{
+			"ImportPath": "code.google.com/p/draw2d/draw2d",
+			"Comment": "release-19",
+			"Rev": "5e9b862124bea783ee751bdf5062710bb010e8ae"
+		},
+		{
+			"ImportPath": "code.google.com/p/freetype-go/freetype",
+			"Comment": "release-81",
+			"Rev": "fe6099d37e696d890913122ac72ba7b1cf5e34bd"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.crypto/ssh",
+			"Comment": "null-229",
+			"Rev": "841f0a993ddddfbf3648cac422c219d0752b280a"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.image/tiff",
+			"Comment": "null-43",
+			"Rev": "b8a2e401a435f875f70a7a5a9ae14db269f70087"
+		},
+		{
+			"ImportPath": "code.google.com/p/goprotobuf/proto",
+			"Comment": "go.r60-157",
+			"Rev": "725eb0907b649c438e0e8f1601648597141fb66c"
+		},
+		{
+			"ImportPath": "code.google.com/p/plotinum/plot",
+			"Comment": "v1.0-119",
+			"Rev": "5b8f894b19d3b87b09ead55a84fad91ff2e04838"
+		},
+		{
+			"ImportPath": "code.google.com/p/plotinum/plotter",
+			"Comment": "v1.0-119",
+			"Rev": "5b8f894b19d3b87b09ead55a84fad91ff2e04838"
+		},
+		{
+			"ImportPath": "code.google.com/p/plotinum/plotutil",
+			"Comment": "v1.0-119",
+			"Rev": "5b8f894b19d3b87b09ead55a84fad91ff2e04838"
+		},
+		{
+			"ImportPath": "code.google.com/p/plotinum/vg",
+			"Comment": "v1.0-119",
+			"Rev": "5b8f894b19d3b87b09ead55a84fad91ff2e04838"
+		},
+		{
+			"ImportPath": "github.com/ajstarks/svgo",
+			"Comment": "go.weekly.2012-01-27-87-g89e3ac6",
+			"Rev": "89e3ac64b5b3e403a5e7c35ea4f98d45db7b4518"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-26-gf7ebb76",
+			"Rev": "f7ebb761e83e21225d1d8954fde853bf8edd46c4"
+		},
+		{
+			"ImportPath": "github.com/davecheney/profile",
+			"Rev": "c29d1a1565bca9fbeed5eed0e5d52ba78469a16b"
+		},
+		{
+			"ImportPath": "github.com/golang/glog",
+			"Rev": "d1c4472bf2efd3826f2b5bdcc02d8416798d678c"
+		},
+		{
+			"ImportPath": "github.com/pkg/math",
+			"Rev": "1983a1405314c0c3395284722fdd4cce053ef392"
+		},
+		{
+			"ImportPath": "gopkg.in/check.v1",
+			"Rev": "871360013c92e1c715c2de6d06b54899468a8a2d"
+		}
+	]
+}

@@ -1,0 +1,3 @@
+# Ignore everything in this folder; used as log dir for glog.
+*
+!.gitignore

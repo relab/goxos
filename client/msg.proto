@@ -1,0 +1,48 @@
+package client;
+
+message Request {
+	enum Type {
+		HELLO 		= 1;
+		EXEC  		= 2;
+	}
+
+	required Type type = 1;
+	optional string id = 2;
+	optional uint32 seq = 3;
+	optional bytes val = 4;
+}
+
+message Response {
+	enum Type {
+		HELLO_RESP	= 1;
+		EXEC_RESP	= 2;	
+	}
+
+	required Type type = 1;
+	optional string id = 2;
+	optional uint32 seq = 3;
+	optional bytes val = 4;
+
+	enum Protocol {
+		UNKNOWN 	= 0;
+		MULTIPAXOS 	= 1;
+		FASTPAXOS	= 2;
+		BATCHPAXOS	= 3;
+	}
+
+	optional Protocol protocol = 5;
+
+	enum Error {
+		NONE		= 0;
+		REDIRECT 	= 1;
+		INVALID_ID	= 2;
+		MISSING_ID	= 3;
+		MISSING_TAG	= 4;
+		MISSING_VAL	= 5;
+		OLD_CMD		= 6;
+		OTHER	 	= 15;	
+	}	
+
+	optional Error 	error_code 	= 14 [default = NONE];
+	optional string error_detail	= 15;
+}

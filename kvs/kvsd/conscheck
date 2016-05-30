@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -f "statehash-*" ]; then
+	awk 'FNR==1{print ""}1' statehash-* | sort | uniq -u
+fi
